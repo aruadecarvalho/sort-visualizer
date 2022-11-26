@@ -1,5 +1,8 @@
+import React from "react";
+import GraphVisualizer from "./components/graph-visualizer/graph-visualizer.component";
+
 const App = () => {
-  return <div>hello</div>;
+  return <GraphVisualizer />;
 };
 
 export default App;
