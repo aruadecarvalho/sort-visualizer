@@ -74,9 +74,10 @@ export const insertionSort = async (
     let bars = containerRef.current.childNodes;
     bars[i].style.backgroundColor = "#99ff00";
     bars[j].style.backgroundColor = "#c0eb75";
-    await sleep(20);
+    await sleep(100);
     bars[i].style.backgroundColor = colorArray[i];
     bars[j].style.backgroundColor = colorArray[j];
+    await sleep(100);
     while (j >= 0 && array[j] > temp) {
       array[j + 1] = array[j];
       j--;
@@ -102,9 +103,10 @@ export const shellSort = async (
       let bars = containerRef.current.childNodes;
       bars[i].style.backgroundColor = "#99ff00";
       bars[j].style.backgroundColor = "#c0eb75";
-      await sleep(20);
+      await sleep(70);
       bars[i].style.backgroundColor = colorArray[i];
       bars[j].style.backgroundColor = colorArray[j];
+      await sleep(70);
       while (j >= gap && array[j - gap] > temp) {
         array[j] = array[j - gap];
         j -= gap;
