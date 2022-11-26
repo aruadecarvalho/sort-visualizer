@@ -2,24 +2,28 @@ import styled from "styled-components";
 
 export const GraphVisualizerContainer = styled.div`
   height: 100vh;
-  width: 90rem;
+  width: 80vw;
   margin: 0 auto;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5rem;
 `;
 
 export const Graph = styled.div`
-  gap: 5rem;
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+  gap: ${(props) => props.graphGap}rem;
+  height: 15rem;
 `;
 
 export const GraphBar = styled.div`
   height: ${(props) => props.barValue};
-  width: 10rem;
+  width: ${(props) => props.barWidth};
   background-color: red;
-  z-index: ${(props) => props.barZIndex};
   transition: all 0.5s;
-  position: absolute;
-  right: ${(props) => props.barPosition};
   bottom: 0;
   transition: all 0.5s;
-  background: ${(props) => props.color};
+  background-color: ${(props) => props.color};
 `;
