@@ -9,7 +9,7 @@ import {
   GraphBar,
   colorArray,
 } from "./graph-visualizer.styles";
-import { bubbleSort } from "../algorithms/algorithms";
+import { mergeSort } from "../algorithms/algorithms";
 
 // create an obj vith value and color keys
 
@@ -38,7 +38,7 @@ const GraphVisualizer = () => {
   };
 
   const handleBubbleSort = async () => {
-    await bubbleSort(sortArray, containerRef, sleep, colorArray, setSortArray);
+    await mergeSort(sortArray, containerRef, sleep, colorArray, setSortArray);
   };
 
   return (
