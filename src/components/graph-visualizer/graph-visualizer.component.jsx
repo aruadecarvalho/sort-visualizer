@@ -10,6 +10,7 @@ import {
   colorArray,
 } from "./graph-visualizer.styles";
 import { mergeSort } from "../algorithms/algorithms";
+import DropDownSelector from "../dropdown-selector/dropdown-selector.component";
 
 // create an obj vith value and color keys
 
@@ -53,6 +54,7 @@ const GraphVisualizer = () => {
         />
       </Box>
       <button onClick={handleBubbleSort}>click</button>
+      <DropDownSelector data={["teste", "teste2"]} text="Select an algorithm" />
       <Graph ref={containerRef} graphGap={25 / arrayLength}>
         {sortArray.map((value, index) => (
           <GraphBar
