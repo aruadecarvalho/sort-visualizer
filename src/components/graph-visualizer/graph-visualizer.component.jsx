@@ -45,7 +45,7 @@ const GraphVisualizer = () => {
 
   const handleReset = () => setSortArray(randomArray(arrayLength));
 
-  const handleSliderChange = (newValue) => {
+  const handleSliderChange = (event, newValue) => {
     setArrayLength(newValue);
     setSortArray(randomArray(newValue));
   };
