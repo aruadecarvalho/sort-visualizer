@@ -37,6 +37,10 @@ export const GraphVisualizerContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   gap: 5rem;
+  @media (max-width: 900px) {
+    padding-right: 5rem;
+    padding-left: 5rem;
+  }
 `;
 
 export const Graph = styled.div`
@@ -51,6 +55,11 @@ export const SelectionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+  }
 `;
 
 export const Button = styled.button`
