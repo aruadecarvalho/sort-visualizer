@@ -87,7 +87,9 @@ const GraphVisualizer = () => {
           text="Select an algorithm"
           setAlgorithm={setAlgorithm}
         />
-        <Button onClick={handleReset}>Reset</Button>
+        <Button onClick={handleReset} inverted={true}>
+          Reset
+        </Button>
         <Button onClick={handleAlgorithm}>Start</Button>
       </SelectionContainer>
       <Graph ref={containerRef} graphGap={25 / arrayLength}>

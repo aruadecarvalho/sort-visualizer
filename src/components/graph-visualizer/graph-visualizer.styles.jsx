@@ -56,17 +56,17 @@ export const SelectionContainer = styled.div`
 export const Button = styled.button`
   width: 21rem;
   height: 4rem;
-  color: #757575;
+  color: ${(props) => (props.inverted ? "#fff" : "#757575")};
   font-size: 1.5rem;
-  background-color: #fff;
+  background-color: ${(props) => (props.inverted ? "#757575" : "#fff")};
   border: none;
   border-radius: 5px;
   box-shadow: 0px 2px 5px 0px rgb(0, 0, 0, 0.2);
   transition: all 0.2s;
   &:hover {
     cursor: pointer;
-    background-color: #757575;
-    color: #fff;
+    background-color: ${(props) => (props.inverted ? "#fff" : "#757575")};
+    color: ${(props) => (props.inverted ? "#757575" : "#fff")};
   }
 `;
 

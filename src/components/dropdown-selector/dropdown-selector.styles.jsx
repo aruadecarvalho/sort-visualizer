@@ -36,7 +36,7 @@ export const DropdownItemsContainer = styled.div`
   position: absolute;
   margin-top: ${(props) => (props.open ? "5px" : "-5px")};
   opacity: ${(props) => (props.open ? "1" : "0")};
-  height: ${(props) => (props.open ? "120px" : "0px")};
+  height: ${(props) => (props.open ? "16rem" : "0px")};
   top: 4rem;
   left: 0;
   width: 100%;
