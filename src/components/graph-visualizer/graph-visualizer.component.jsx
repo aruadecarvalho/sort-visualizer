@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 
-import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
+import DropDownSelector from "../dropdown-selector/dropdown-selector.component";
+
+import { sleep, randomArray } from "../../utils/utils";
 
 import {
   GraphVisualizerContainer,
@@ -11,6 +13,7 @@ import {
   Button,
   SelectionContainer,
 } from "./graph-visualizer.styles";
+
 import {
   bubbleSort,
   selectionSort,
@@ -20,7 +23,6 @@ import {
   heapSort,
   quickSort,
 } from "../algorithms/algorithms";
-import DropDownSelector from "../dropdown-selector/dropdown-selector.component";
 
 const algorithmsObject = {
   "Bubble Sort": bubbleSort,
@@ -36,24 +38,14 @@ const GraphVisualizer = () => {
   const [sortArray, setSortArray] = useState([]);
   const [arrayLength, setArrayLength] = useState(7);
   const [algorithm, setAlgorithm] = useState("None");
-  const containerRef = useRef(null);
 
-  function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  const containerRef = useRef(null);
 
   useEffect(() => setSortArray(randomArray(10)), []);
 
-  const randomArray = (length) => {
-    let array = [];
-    for (let i = 0; i < length; i++) {
-      array.push(Math.floor(Math.random() * 95) + 5);
-    }
-    return array;
-  };
-
   const handleReset = () => setSortArray(randomArray(arrayLength));
-  const handleSliderChange = (event, newValue) => {
+
+  const handleSliderChange = (newValue) => {
     setArrayLength(newValue);
     setSortArray(randomArray(newValue));
   };
