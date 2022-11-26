@@ -6,7 +6,7 @@ Sort algorithms visualizer built with React.js and StyledComponents. Select the 
 
 [Sort Visualizer website](https://sort-visualizer-arua.netlify.app/)
 
-![Preview]('screenshot.png')
+![Home](screenshot.png)
 
 ## Lessons Learned
 
