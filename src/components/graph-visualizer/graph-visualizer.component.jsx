@@ -7,13 +7,14 @@ import {
   GraphVisualizerContainer,
   Graph,
   GraphBar,
+  colorArray,
 } from "./graph-visualizer.styles";
+import { bubbleSort } from "../algorithms/algorithms";
 
 // create an obj vith value and color keys
-const defaultArray = [99, 54, 23, 10, 43, 76, 88];
 
 const GraphVisualizer = () => {
-  const [sortArray, setSortArray] = useState(defaultArray);
+  const [sortArray, setSortArray] = useState([]);
   const [arrayLength, setArrayLength] = useState(7);
   const containerRef = useRef(null);
 
@@ -21,37 +22,12 @@ const GraphVisualizer = () => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  // define a color for each bar in the graph in a obj
-  const bubbleSort = async () => {
-    let array = [...sortArray];
-    let length = array.length;
-    for (let i = 0; i < length; i++) {
-      for (let j = 0; j < length - i - 1; j++) {
-        let bars = containerRef.current.childNodes;
-        bars[j].style.filter = "brightness(200%)";
-        bars[j + 1].style.filter = "brightness(150%)";
-        await sleep(100);
-        bars[j].style.filter = "brightness(100%)";
-        bars[j + 1].style.filter = "brightness(100%)";
-        if (array[j] > array[j + 1]) {
-          let temp = array[j];
-          array[j] = array[j + 1];
-          array[j + 1] = temp;
-          setSortArray([...array]);
-        }
-        bars[j].style.filter = "brightness(200%)";
-        bars[j + 1].style.filter = "brightness(200%)";
-        await sleep(100);
-        bars[j].style.filter = "brightness(100%)";
-        bars[j + 1].style.filter = "brightness(100%)";
-      }
-    }
-  };
+  useEffect(() => setSortArray(randomArray(10)), []);
 
   const randomArray = (length) => {
     let array = [];
     for (let i = 0; i < length; i++) {
-      array.push(Math.floor(Math.random() * 100));
+      array.push(Math.floor(Math.random() * 95) + 5);
     }
     return array;
   };
@@ -59,6 +35,10 @@ const GraphVisualizer = () => {
   const handleSliderChange = (event, newValue) => {
     setArrayLength(newValue);
     setSortArray(randomArray(newValue));
+  };
+
+  const handleBubbleSort = async () => {
+    await bubbleSort(sortArray, containerRef, sleep, colorArray, setSortArray);
   };
 
   return (
@@ -72,14 +52,14 @@ const GraphVisualizer = () => {
           max={25}
         />
       </Box>
-      <button onClick={bubbleSort}>click</button>
+      <button onClick={handleBubbleSort}>click</button>
       <Graph ref={containerRef} graphGap={25 / arrayLength}>
         {sortArray.map((value, index) => (
           <GraphBar
             barValue={`${value / 2}rem`}
             barWidth={`${100 / arrayLength}rem`}
             key={index}
-            color={"red"}
+            color={index}
           />
         ))}
       </Graph>
