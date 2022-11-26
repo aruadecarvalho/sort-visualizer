@@ -8,7 +8,7 @@ import {
   DropdownItem,
 } from "./dropdown-selector.styles";
 
-function DropDownSelector({ data, text }) {
+function DropDownSelector({ data, text, setAlgorithm }) {
   const [dropdownShow, setDropdownShow] = useState(false);
   const [dataSelected, setDataSelected] = useState(text);
 
@@ -17,6 +17,7 @@ function DropDownSelector({ data, text }) {
   };
   const setDataSelectedValue = (value) => {
     setDataSelected(value);
+    setAlgorithm(value);
     setDropdownShow(false);
   };
   return (

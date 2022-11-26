@@ -30,7 +30,8 @@ export const colorArray = [
 
 export const GraphVisualizerContainer = styled.div`
   height: 100vh;
-  width: 80vw;
+  max-width: 90rem;
+  padding-top: 5rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -44,6 +45,29 @@ export const Graph = styled.div`
   flex: 1;
   gap: ${(props) => props.graphGap}rem;
   height: 15rem;
+`;
+
+export const SelectionContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Button = styled.button`
+  width: 21rem;
+  height: 4rem;
+  color: #757575;
+  font-size: 1.5rem;
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px 0px rgb(0, 0, 0, 0.2);
+  transition: all 0.2s;
+  &:hover {
+    cursor: pointer;
+    background-color: #757575;
+    color: #fff;
+  }
 `;
 
 export const GraphBar = styled.div.attrs((props) => ({

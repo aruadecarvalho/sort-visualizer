@@ -8,15 +8,34 @@ import {
   Graph,
   GraphBar,
   colorArray,
+  Button,
+  SelectionContainer,
 } from "./graph-visualizer.styles";
-import { mergeSort } from "../algorithms/algorithms";
+import {
+  bubbleSort,
+  selectionSort,
+  insertionSort,
+  shellSort,
+  mergeSort,
+  heapSort,
+  quickSort,
+} from "../algorithms/algorithms";
 import DropDownSelector from "../dropdown-selector/dropdown-selector.component";
 
-// create an obj vith value and color keys
+const algorithmsObject = {
+  "Bubble Sort": bubbleSort,
+  "Selection Sort": selectionSort,
+  "Insertion Sort": insertionSort,
+  "Shell Sort": shellSort,
+  "Merge Sort": mergeSort,
+  "Heap Sort": heapSort,
+  "Quick Sort": quickSort,
+};
 
 const GraphVisualizer = () => {
   const [sortArray, setSortArray] = useState([]);
   const [arrayLength, setArrayLength] = useState(7);
+  const [algorithm, setAlgorithm] = useState("None");
   const containerRef = useRef(null);
 
   function sleep(ms) {
@@ -33,28 +52,44 @@ const GraphVisualizer = () => {
     return array;
   };
 
+  const handleReset = () => setSortArray(randomArray(arrayLength));
   const handleSliderChange = (event, newValue) => {
     setArrayLength(newValue);
     setSortArray(randomArray(newValue));
   };
 
-  const handleBubbleSort = async () => {
-    await mergeSort(sortArray, containerRef, sleep, colorArray, setSortArray);
+  const handleAlgorithm = async () => {
+    if (algorithm === "None") {
+      return;
+    }
+    let algorithmFunction = algorithmsObject[algorithm];
+    await algorithmFunction(
+      sortArray,
+      containerRef,
+      sleep,
+      colorArray,
+      setSortArray
+    );
   };
 
   return (
     <GraphVisualizerContainer>
-      <Box width={300}>
-        <Slider
-          defaultValue={10}
-          aria-label="Default"
-          onChange={handleSliderChange}
-          min={5}
-          max={25}
+      <Slider
+        defaultValue={10}
+        aria-label="Default"
+        onChange={handleSliderChange}
+        min={5}
+        max={25}
+      />
+      <SelectionContainer>
+        <DropDownSelector
+          data={Object.keys(algorithmsObject)}
+          text="Select an algorithm"
+          setAlgorithm={setAlgorithm}
         />
-      </Box>
-      <button onClick={handleBubbleSort}>click</button>
-      <DropDownSelector data={["teste", "teste2"]} text="Select an algorithm" />
+        <Button onClick={handleReset}>Reset</Button>
+        <Button onClick={handleAlgorithm}>Start</Button>
+      </SelectionContainer>
       <Graph ref={containerRef} graphGap={25 / arrayLength}>
         {sortArray.map((value, index) => (
           <GraphBar
